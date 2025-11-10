@@ -20,5 +20,5 @@ async def load_cogs():
     await bot.load_extension("function.feitje")
 
 asyncio.run(load_cogs())
-
+# test
 bot.run(TOKEN)
