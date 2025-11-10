@@ -18,6 +18,7 @@ async def on_ready():
 import asyncio
 async def load_cogs():
     await bot.load_extension("function.feitje")
+    await bot.load_extension("function.song")
 
 asyncio.run(load_cogs())
 # test
