@@ -2,25 +2,35 @@ import os
 from dotenv import load_dotenv
 import discord
 from discord.ext import commands
+import asyncio
 
 load_dotenv()
+
 TOKEN = os.getenv("DISCORD_TOKEN")
+ARENA_CHANNEL_ID = int(os.getenv("ARENA_CHANNEL_ID") or 0)
 
 intents = discord.Intents.default()
 intents.message_content = True
-bot = commands.Bot(command_prefix="!", intents=intents)
+
+bot = commands.Bot(command_prefix="!", intents=intents, help_command=None)
+
+# Store config so cogs can access it
+bot.config = {"ARENA_CHANNEL_ID": ARENA_CHANNEL_ID}
 
 @bot.event
 async def on_ready():
-    print(f'{bot.user} has connected to Discord!')
+    print(f"Bot online als {bot.user}")
 
-# Load cogs properly in discord.py v2
-import asyncio
-async def load_cogs():
-    await bot.load_extension("function.feitje")
-    await bot.load_extension("function.song")
-    await bot.load_extension("function.uitleg")
+async def main():
+    async with bot:
+        # Load all your cogs/extensions
+        await bot.load_extension("function.feitje")
+        await bot.load_extension("function.song")
+        await bot.load_extension("function.uitleg")
+        await bot.load_extension("function.arena")
 
-asyncio.run(load_cogs())
-# test
-bot.run(TOKEN)
+        # Start bot
+        await bot.start(TOKEN)
+
+if __name__ == "__main__":
+    asyncio.run(main())

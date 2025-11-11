@@ -6,15 +6,16 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import asyncio
 
-# Load opus
+# voor binnen het gesprek
 if not discord.opus.is_loaded():
     discord.opus.load_opus("/opt/homebrew/opt/opus/lib/libopus.dylib")
 
-# Spotify API credentials
+# Spotify dingentjes
 SPOTIFY_CLIENT_ID = "13f09639d9324f26927f659aa96b0ea0"
 SPOTIFY_CLIENT_SECRET = "a4e95c7959de4d2d937ae3d961145012"
 SPOTIFY_DEFAULT_ID = "3XKvUkeeuxTcKAKBrzR4lE"
 
+# link to spotify
 sp = spotipy.Spotify(
     auth_manager=SpotifyClientCredentials(
         client_id=SPOTIFY_CLIENT_ID,
@@ -22,7 +23,7 @@ sp = spotipy.Spotify(
     )
 )
 
-# YouTube + FFmpeg settings
+
 ytdl_opts = {
     "format": "bestaudio/best",
     "noplaylist": True,
@@ -87,7 +88,7 @@ class Music(commands.Cog):
             ctx.voice_client.stop()
         await self.nieknee(ctx, spotify_id)
 
-    @commands.command(name="niekweg")
+    @commands.command(name="niekstop")
     async def leave(self, ctx):
         if ctx.voice_client:
             await ctx.voice_client.disconnect()
