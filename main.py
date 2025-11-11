@@ -14,7 +14,6 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 async def on_ready():
     print(f'{bot.user} has connected to Discord!')
 
-# Load cogs properly in discord.py v2
 import asyncio
 async def load_cogs():
     await bot.load_extension("function.feitje")
@@ -22,5 +21,5 @@ async def load_cogs():
     await bot.load_extension("function.uitleg")
 
 asyncio.run(load_cogs())
-# test
+
 bot.run(TOKEN)

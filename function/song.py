@@ -6,15 +6,16 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import asyncio
 
-# Load opus
+# Laae opus
 if not discord.opus.is_loaded():
     discord.opus.load_opus("/opt/homebrew/opt/opus/lib/libopus.dylib")
 
-# Spotify API credentials
+# Spotify tokens en zo en playlist token van niek
 SPOTIFY_CLIENT_ID = "13f09639d9324f26927f659aa96b0ea0"
 SPOTIFY_CLIENT_SECRET = "a4e95c7959de4d2d937ae3d961145012"
 SPOTIFY_DEFAULT_ID = "3XKvUkeeuxTcKAKBrzR4lE"
 
+#login in spitofy
 sp = spotipy.Spotify(
     auth_manager=SpotifyClientCredentials(
         client_id=SPOTIFY_CLIENT_ID,
@@ -22,7 +23,7 @@ sp = spotipy.Spotify(
     )
 )
 
-# YouTube + FFmpeg settings
+# youtbue instelling voor de viedeos
 ytdl_opts = {
     "format": "bestaudio/best",
     "noplaylist": True,
@@ -35,16 +36,15 @@ ffmpeg_opts = {
 ytdl = yt_dlp.YoutubeDL(ytdl_opts)
 
 
-# Helper: detect playlist vs album
+# als je !nieknee [link spotify iets] invult kijkt hij of het ene playlist of en album is
 def get_spotify_tracks(spotify_id: str):
-    # Remove ?si=... if user pastes full link
+#verwijderT dit /?
     spotify_id = spotify_id.split("?")[0].split("/")[-1]
 
     try:
-        # Try playlist first
+
         return [item["track"] for item in sp.playlist_tracks(spotify_id)["items"]]
     except spotipy.exceptions.SpotifyException:
-        # If not playlist, try album
         try:
             return sp.album_tracks(spotify_id)["items"]
         except spotipy.exceptions.SpotifyException:
