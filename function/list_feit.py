@@ -1,7 +1,8 @@
 feitjes = [
-    "Niek heeft ooit een bot geschreven die alleen 'hoi' zei.",
-    "Niek’s favoriete snack tijdens het coderen is pure logica.",
-    "Niek kan bugs ruiken voordat ze verschijnen.",
-    "Wist je dat Niek een commit deed zonder typo’s? Een legendarisch moment.",
-    "Niek’s favoriete error: ‘expected :, got ;’"
+    "Plastice deetjes in de flessen",
+    "wist je dat een vliegtuig meer uitstoot heeft dan een trein",
+    "Meer vliegtuigen in de zee dan onderzeeris in de lucht",
+    "Daar heb je de salami broeders",
+    "Als je zo door gaat krijg je contract",
+    "ik zie geen commit"
 ]

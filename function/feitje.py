@@ -6,6 +6,7 @@ class Hello(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    # hier wordt aangeroept dat als je !niek doet dat die een random feitje pakt van list_feit in de lijst feitjes
     @commands.command(name="niek")
     async def niek(self, ctx):
         feitje = random.choice(feitjes)
