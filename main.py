@@ -1,25 +1,25 @@
 import os
-from dotenv import load_dotenv
 import discord
 from discord.ext import commands
+from dotenv import load_dotenv
+import asyncio
 
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
 
-intents = discord.Intents.default()
-intents.message_content = True
-bot = commands.Bot(command_prefix="!", intents=intents)
+bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 
 @bot.event
 async def on_ready():
     print(f'{bot.user} has connected to Discord!')
 
-import asyncio
-async def load_cogs():
+async def main():
+    # Load all cogs
     await bot.load_extension("function.feitje")
     await bot.load_extension("function.song")
     await bot.load_extension("function.uitleg")
+    await bot.load_extension("function.praat")
 
-asyncio.run(load_cogs())
+    await bot.start(TOKEN)
 
-bot.run(TOKEN)
+asyncio.run(main())
