@@ -1,6 +1,6 @@
 from discord.ext import commands
 import random
-from list-feit import feitjes
+from function.list_feit import feitjes
 
 class Hello(commands.Cog):
     def __init__(self, bot):
