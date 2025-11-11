@@ -19,6 +19,7 @@ import asyncio
 async def load_cogs():
     await bot.load_extension("function.feitje")
     await bot.load_extension("function.song")
+    await bot.load_extension("function.uitleg")
 
 asyncio.run(load_cogs())
 # test
